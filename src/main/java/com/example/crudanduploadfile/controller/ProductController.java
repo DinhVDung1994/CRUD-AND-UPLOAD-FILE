@@ -40,7 +40,7 @@ public class ProductController {
             );
         }
     }
-
+    // Create product
     @PostMapping("")
     ResponseEntity<ReponseObject> insertProduct(@RequestBody Product newProduct) {
         List<Product> foundProducts = repository.findByProductName(newProduct.getProductName().trim());
@@ -53,7 +53,7 @@ public class ProductController {
                 new ReponseObject("OKE", "Insert product successfully!", repository.save(newProduct))
         );
     }
-
+    // Update product
     @PutMapping("/{id}")
     ResponseEntity<ReponseObject> updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
         Optional<Product> updataProduct = repository.findById(id);
@@ -74,7 +74,7 @@ public class ProductController {
                 new ReponseObject("OKE", "Update product successfully!", updataProduct)
         );
     }
-
+    // Delete product
     @DeleteMapping("/{id}")
     ResponseEntity<ReponseObject> deleteProduct(@PathVariable Long id){
         boolean exists = repository.existsById(id);
