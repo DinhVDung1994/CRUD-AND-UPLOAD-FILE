@@ -8,14 +8,14 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -93,7 +93,17 @@ public class ImageStorageService implements IStorageService{
     }
 
     @Override
-    public void deleteAllFiles() {
-
+    public void deleteAllFiles(String fileName) {
+        try{
+            File file = new File("C:\\Users\\dvdung3\\IdeaProjects\\CRUDAndUploadFile\\uploads\\"+fileName);
+            if (file.exists()){
+                file.delete();
+                System.out.println("Delete file successfully!");
+            }else {
+                System.out.println("file dose not exist!");
+            }
+        }catch (Exception exception){
+            throw new RuntimeException("Cannot delete file/file does not exist!",exception);
+        }
     }
 }

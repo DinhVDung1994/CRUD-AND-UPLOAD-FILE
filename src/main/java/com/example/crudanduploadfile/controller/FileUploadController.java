@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,5 +62,10 @@ public class FileUploadController {
         }catch (Exception exception){
             return ResponseEntity.ok(new ReponseObject("Failed","List files failed",new String[] {}));
         }
+    }
+    // Delete fileupload
+    @DeleteMapping("/file/{fileName}")
+    public void deleteFileUpload(@PathVariable String fileName){
+            storageService.deleteAllFiles(fileName);
     }
 }
