@@ -4,10 +4,17 @@ import javax.persistence.*;
 
 // POJO = Plain Object Java Object
 @Entity
+// đặt tên cho bảng nếu không đặt sẽ mặc định lấy tên của class làm tên table
+@Table(name = "tblProduct")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    // Validate = constraint
+    // nullable = false => yêu cầu không được để trống
+    // unique = true    => yêu cầu không được trùng nhau
+    // length = 300     => độ dài tối đa được phép là 300 kí tự
+    @Column(nullable = false,unique = true,length = 300)
     private String productName;
     private int year;
     private Double price;
